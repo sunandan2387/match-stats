@@ -1,6 +1,5 @@
 import React  from 'react';
 import ScoreBoard from './components/ScoreBoard';
-import Timeline from './components/Timeline';
 import MatchStatistics from './components/MatchStatistics';
 import PossessionChartA from './components/PossessionChartA';
 import PossessionChartB from './components/PossessionChartB';
@@ -11,14 +10,14 @@ function App() {
   const [filters, SetFilters] = useState('2')
   const [countA, setCountA] = useState(0);
   const [countB, setCountB] = useState(0);
-  const [maxValueA, setMaxValueA] = useState(61);
-  const [maxValueB, setMaxValueB] = useState(39);
+  const maxValueA = 61
+  const maxValueB = 39
 
   useEffect(() => {
     if (countA < maxValueA) {
       const interval = setInterval(() => {
         setCountA(prevCount => prevCount + 1);
-      }, 1000 / maxValueA); // Dynamically set interval based on maxValue
+      }, 1000 / maxValueA);
 
       return () => clearInterval(interval);
     }
@@ -28,7 +27,7 @@ function App() {
     if (countB < maxValueB) {
       const interval = setInterval(() => {
         setCountB(prevCount => prevCount + 1);
-      }, 1000 / maxValueB); // Dynamically set interval based on maxValue
+      }, 1000 / maxValueB);
 
       return () => clearInterval(interval);
     }
@@ -39,8 +38,8 @@ function App() {
       <div className='py-2 border-b min-w-[800px] w-full'>
         <p className='text-center'>Final - Champions League - Single Game</p>
       </div>
+
       <ScoreBoard teamA={'Real Madrid'} teamB={'Liverpool'} />
-      {/* <Timeline /> */}
       
       <div className='grid grid-cols-4 min-w-[800px] w-full text-center gap-0.5 max-w-5xl'>
         <div onClick={() => {
@@ -72,6 +71,7 @@ function App() {
           redCardsB={0} savesA={1} savesB={2} />
         <PossessionChartB posColor="#FE7417" team="Liverpool" possession={countB} />
       </div>
+
     </div>
   );
 }
